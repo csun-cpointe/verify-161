@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+  #%L
+  AIOps Foundation::Archetype::Project
+  %%
+  Copyright (C) 2021 Booz Allen
+  %%
+  All Rights Reserved. You may not copy, reproduce, distribute, publish, display, 
+  execute, modify, create derivative works of, transmit, sell or offer for resale, 
+  or in any way exploit any part of this solution without Booz Allen Hamilton’s 
+  express written permission.
+  #L%
+  --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.boozallen.aissemble</groupId>
+    <artifactId>build-parent</artifactId>
+    <version>1.6.1</version>
+  </parent>
+  <groupId>com.boozallen.aissemble.verify161</groupId>
+  <artifactId>verify-161</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>Verify 161</name>
+  <description>Project that contains aiSSEMBLE compliant pipeline(s)</description>
+  <properties>
+    <id.nexus.server>nexus</id.nexus.server>
+  </properties>
+  <modules>
+    <module>verify-161-pipeline-models</module>
+    <module>verify-161-pipelines</module>
+    <module>verify-161-shared</module>
+    <module>verify-161-docker</module>
+    <module>verify-161-deploy</module>
+    <module>verify-161-tests</module>
+  </modules>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.boozallen.aissemble</groupId>
+        <artifactId>bom-component</artifactId>
+        <version>${version.aissemble}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.boozallen.aissemble</groupId>
+        <artifactId>bom-instantiation</artifactId>
+        <version>${version.aissemble}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  <repositories>
+    <repository>
+      <id>nexus</id>
+      <name>aiops-maven2</name>
+      <releases>
+        <enabled>true</enabled>
+        <checksumPolicy>fail</checksumPolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <checksumPolicy>fail</checksumPolicy>
+      </snapshots>
+      <url>https://nexus.boozallencsn.com/repository/aiops-maven2/</url>
+      <layout>default</layout>
+    </repository>
+    <repository>
+      <id>bintray</id>
+      <name>Bintray</name>
+      <url>https://repos.spark-packages.org</url>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>nexus</id>
+      <name>aiops-maven2</name>
+      <releases>
+        <enabled>true</enabled>
+        <checksumPolicy>fail</checksumPolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <checksumPolicy>fail</checksumPolicy>
+      </snapshots>
+      <url>https://nexus.boozallencsn.com/repository/aiops-maven2/</url>
+      <layout>default</layout>
+    </pluginRepository>
+  </pluginRepositories>
+  <scm>
+    <connection>scm:git:git.example.com/verify-161.git</connection>
+    <developerConnection>scm:git:git.example.com/verify-161.git</developerConnection>
+    <url>git.example.com/verify-161</url>
+    <tag>HEAD</tag>
+  </scm>
+  <build>
+    <extensions>
+      <extension>
+        <groupId>com.boozallen.aissemble</groupId>
+        <artifactId>foundation-mda</artifactId>
+        <version>${version.aissemble}</version>
+      </extension>
+    </extensions>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.technologybrewery.fermenter</groupId>
+          <artifactId>fermenter-mda</artifactId>
+          <dependencies>
+            <dependency>
+              <groupId>com.boozallen.aissemble</groupId>
+              <artifactId>foundation-mda</artifactId>
+              <version>${version.aissemble}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.technologybrewery.baton</groupId>
+        <artifactId>baton-maven-plugin</artifactId>
+        <dependencies>
+          <dependency>
+            <groupId>com.boozallen.aissemble</groupId>
+            <artifactId>foundation-upgrade</artifactId>
+            <version>${version.aissemble}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.technologybrewery.fermenter</groupId>
+        <artifactId>fermenter-mda</artifactId>
+        <inherited>false</inherited>
+        <configuration>
+          <basePackage>com.boozallen.aissemble.verify161</basePackage>
+          <profile>aissemble-project-root</profile>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>set-habushu-dist-artifact-version</id>
+            <goals>
+              <goal>regex-property</goal>
+            </goals>
+            <configuration>
+              <!-- Captures the version of Habushu distribution artifacts to facilitate
+                             retrieval of artifacts between modules, specifically when the multiple
+                             sdist or wheels may be found in Habushu's dist folder as the result of
+                             publishing developmental/SNAPSHOT releases during the build.
+                             For example, if the current project version is 1.1.0-SNAPSHOT,
+                             ${version.habushu.dist.artifact} will be 1.1.0.dev0 -->
+              <name>version.habushu.dist.artifact</name>
+              <value>${project.version}</value>
+              <regex>-SNAPSHOT</regex>
+              <replacement>.dev0</replacement>
+              <failIfNoMatch>false</failIfNoMatch>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

@@ -1,0 +1,47 @@
+metadata:
+    name: python-pipeline
+sparkApp:
+  spec:
+    type: Python
+    image: "boozallen/verify-161-spark-worker-docker:latest"
+    mainApplicationFile: "local:///opt/spark/jobs/pipelines/python-pipeline/python_pipeline_driver.py"
+    deps:
+      packages:
+        - mysql:mysql-connector-java:8.0.30
+        - org.apache.hadoop:hadoop-aws:3.3.4
+        - com.amazonaws:aws-java-sdk-bundle:1.12.262
+        - io.delta:delta-core_2.12:2.4.0
+        - io.delta:delta-storage:2.4.0
+      excludePackages: []
+    hadoopConf:
+      fs.s3a.fast.upload: "true"
+      fs.s3a.path.style: "true"
+    driver:
+      cores: 1
+      coreLimit: "4900m"
+      memory: "2048m"
+      env:
+        - name: KRAUSENING_BASE
+          value: /opt/spark/krausening/base
+        - name: ENABLE_LINEAGE
+          value: "true"
+        - name: AWS_ACCESS_KEY_ID
+          value: "123"
+        - name: AWS_SECRET_ACCESS_KEY
+          value: "456"
+        - name: STORAGE_ENDPOINT
+          value: "http://s3-local:4566"
+    executor:
+      cores: 1
+      memory: "4096"
+      env:
+        - name: KRAUSENING_BASE
+          value: /opt/spark/krausening/base
+        - name: ENABLE_LINEAGE
+          value: "true"
+        - name: AWS_ACCESS_KEY_ID
+          value: "123"
+        - name: AWS_SECRET_ACCESS_KEY
+          value: "456"
+        - name: STORAGE_ENDPOINT
+          value: "http://s3-local:4566"

@@ -1,0 +1,19 @@
+# Directory in which to look for SparkApplication values files representing the available pipeline configurations
+# available for execution                                     |
+valuesFileDirectory: "target/"
+
+aissemble-pipeline-invocation:
+  aissemble-quarkus:
+    deployment:
+      image:
+        tag: 1.6.1
+      serviceAccountName: sparkoperator
+      automountServiceAccountToken: true
+    app:
+      name: "pipeline-invocation-service"
+    service:
+      spec:
+        ports:
+          - name: "invocation-rest"
+            port: 8080
+            targetPort: 8080

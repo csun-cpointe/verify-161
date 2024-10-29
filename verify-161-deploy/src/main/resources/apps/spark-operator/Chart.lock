@@ -1,0 +1,6 @@
+dependencies:
+- name: aissemble-spark-operator
+  repository: https://nexus.boozallencsn.com/repository/aiops-helm-internal/
+  version: 1.6.1
+digest: sha256:00b1473ebce5a38879825431b9cc5f811775eb9464486b5524c70747a7692418
+generated: "2024-10-25T14:59:19.657683-07:00"

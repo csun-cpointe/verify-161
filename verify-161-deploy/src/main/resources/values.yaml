@@ -1,0 +1,12 @@
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  targetRevision: dev
+  repo: git.example.com/verify-161
+  helm:
+    valueFiles:
+      - values.yaml
+
+global:
+  imagePullPolicy: Always
+  dockerRepo: aiops-docker-internal.nexus.boozallencsn.com/aiops/

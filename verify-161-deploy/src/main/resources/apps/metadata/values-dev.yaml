@@ -1,0 +1,12 @@
+########################################
+## CONFIG | Metadata Configs Development Overrides
+## See aiSSEMBLE extensions-helm-metadata: README for more details.
+## https://github.boozallencsn.com/aissemble/aissemble/
+########################################
+aissemble-metadata:
+  service:
+    spec:
+      type: LoadBalancer
+
+  ingress:
+    enabled: false

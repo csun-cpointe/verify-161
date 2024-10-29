@@ -1,0 +1,12 @@
+#################################################################################
+## CONFIG | S3 Local Configs                                                      ##
+## See aiSSEMBLE extensions-helm-localstack: README for more details.             ##
+## https://github.boozallencsn.com/aissemble/aissemble/                           ##
+#################################################################################
+
+aissemble-localstack:
+  buckets:
+    - name: spark-infrastructure
+      keys:
+        - spark-events/
+

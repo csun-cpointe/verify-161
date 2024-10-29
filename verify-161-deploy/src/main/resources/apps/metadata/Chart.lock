@@ -1,0 +1,6 @@
+dependencies:
+- name: aissemble-metadata
+  repository: https://nexus.boozallencsn.com/repository/aiops-helm-internal/
+  version: 1.6.1
+digest: sha256:75e53995194a70275f72f72bde462bf3b21f58dfbbb9167c04265c53d88c54a5
+generated: "2024-10-25T14:59:39.975169-07:00"

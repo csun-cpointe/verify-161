@@ -1,0 +1,12 @@
+########################################
+## CONFIG | Policy Decision Point Configs Development Overrides
+## See aiSSEMBLE extensions-helm-policy-decision-point: README for more details.
+## https://github.boozallencsn.com/aissemble/aissemble/
+########################################
+aissemble-policy-decision-point:
+  image:
+    imagePullPolicy: IfNotPresent
+    dockerRepo: ""
+  service:
+    spec:
+      type: LoadBalancer

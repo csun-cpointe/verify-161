@@ -1,0 +1,8 @@
+#################################################################################
+## CONFIG | Spark Operator Configs                                                ##
+## See aiSSEMBLE extensions-helm-spark-operator: README for more details.         ##
+## https://github.boozallencsn.com/aissemble/aissemble/                           ##
+#################################################################################
+aissemble-spark-operator:
+  ivyCache:
+    storeCacheOnNode: true

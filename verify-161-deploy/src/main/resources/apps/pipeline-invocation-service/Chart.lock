@@ -1,0 +1,9 @@
+dependencies:
+- name: aissemble-pipeline-invocation
+  repository: https://nexus.boozallencsn.com/repository/aiops-helm-internal/
+  version: 1.6.1
+- name: aissemble-pipeline-invocation-lib
+  repository: https://nexus.boozallencsn.com/repository/aiops-helm-internal/
+  version: 1.6.1
+digest: sha256:5fda6c7f84b058bf5edc52dcc5d3853417e87c0b49666da3993e1268557a07a5
+generated: "2024-10-25T15:03:08.55262-07:00"

@@ -1,0 +1,6 @@
+dependencies:
+- name: aissemble-policy-decision-point
+  repository: https://nexus.boozallencsn.com/repository/aiops-helm-internal/
+  version: 1.6.1
+digest: sha256:8b4c8ec538cf18830f683886c3728657373ea76d8f3ce3d94469e69e89e1e359
+generated: "2024-10-25T14:59:30.006875-07:00"

@@ -1,0 +1,6 @@
+dependencies:
+- name: aissemble-localstack
+  repository: https://nexus.boozallencsn.com/repository/aiops-helm-internal/
+  version: 1.6.1
+digest: sha256:d5e8d073cc2b190e9073625f481be81a64fdbfa0285cb1394c0158d05a0722f1
+generated: "2024-10-25T15:02:37.656552-07:00"

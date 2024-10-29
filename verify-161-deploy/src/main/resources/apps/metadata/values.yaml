@@ -1,0 +1,11 @@
+########################################
+## CONFIG | Metadata Configs
+## See aiSSEMBLE extensions-helm-metadata: README for more details.
+## https://github.boozallencsn.com/aissemble/aissemble/
+########################################
+aissemble-metadata:
+  app:
+    name: "metadata"
+  image:
+    tag: "1.6.1"
+    imagePullPolicy: IfNotPresent
